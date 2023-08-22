@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:seenear/main.dart';
-import 'package:seenear/src/features/common/splash/splash_screen.dart';
+import 'package:seenear/src/features/common/splash/view/splash_screen.dart';
 
 final configRouter = GoRouter(
   initialLocation: "/splash",

@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:seenear/core/init/di/locator.dart';
 import 'package:seenear/src/constants/colors.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:seenear/src/routing/routes.dart';
 
 void main() async {
-  await dotenv.load(fileName: 'assets/config/.env');
+  WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: '.env');
   KakaoSdk.init(nativeAppKey: dotenv.env['KAKAO_API_KEY']!);
   // 상태바 투명화
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.dark));
+  // GetIt 초기화
+  setupLocator();
   // 화면을 세로로 고정
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -37,6 +42,10 @@ class MyApp extends StatelessWidget {
         ),
         fontFamily: 'pretendard',
       ),
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       supportedLocales: const [Locale('ko', 'KR')],
       routerConfig: configRouter,
     );

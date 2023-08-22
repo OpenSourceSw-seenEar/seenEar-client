@@ -8,6 +8,7 @@ class SelectGenderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView<SelectGenderViewModel>(
+      viewModel: SelectGenderViewModel(),
       onModelReady: (viewModel) {
         viewModel.setContext(context);
       },

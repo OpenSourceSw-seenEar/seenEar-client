@@ -1,8 +1,7 @@
 import "package:flutter/material.dart";
-import "package:flutter/src/widgets/framework.dart";
 import "package:seenear/core/base/model/base_view_model.dart";
 
-class SelectGenderViewModel extends BaseViewModel with ChangeNotifier {
+class SelectGenderViewModel extends BaseViewModel {
   @override
   void init() {
     // TODO: implement init

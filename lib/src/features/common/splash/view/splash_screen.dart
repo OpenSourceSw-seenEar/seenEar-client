@@ -11,7 +11,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<SplashViewModel>(
       viewModel: SplashViewModel(),
-      onModelReady: (model) => model.setContext(context),
+      onModelReady: (model) => {model.init(), model.setContext(context)},
       builder: (context, model, child) {
         return Scaffold(
           body: Center(

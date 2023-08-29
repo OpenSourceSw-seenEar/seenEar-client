@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:seenear/core/base/model/base_view_model.dart';
 import 'package:seenear/core/init/db/local_manager.dart';
 
-class SplashViewModel extends BaseViewModel with ChangeNotifier {
+class SplashViewModel extends BaseViewModel {
   @override
   void init() {
     controlAppState();
@@ -19,8 +19,8 @@ class SplashViewModel extends BaseViewModel with ChangeNotifier {
 
   @override
   void setContext(BuildContext context) {
-    Future.delayed(const Duration(seconds: 2), () {
-      context.go('/');
+    Future.delayed(const Duration(seconds: 1), () {
+      context.go('/selectRole');
     });
   }
 }

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
@@ -14,7 +15,25 @@ part 'core_operation.dart';
 class CoreDio with DioMixin implements Dio {
   CoreDio(this.options) {
     options = options;
-    interceptors.add(InterceptorsWrapper());
+    interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) {
+        log("Request: ${options.method} ${options.path}");
+        log("Headers: ${options.headers}");
+        log("Query Parameters: ${options.queryParameters}");
+        log("Data: ${options.data}");
+        return handler.next(options);
+      },
+      onResponse: (response, handler) {
+        log("Response: ${response.statusCode} ${response.statusMessage}");
+        log("Data: ${response.data}");
+        return handler.next(response);
+      },
+      onError: (DioException e, handler) {
+        log("Error: ${e.response?.statusCode} ${e.response?.statusMessage}");
+        log("Data: ${e.response?.data}");
+        return handler.next(e);
+      },
+    ));
     httpClientAdapter = IOHttpClientAdapter();
   }
 
@@ -27,13 +46,16 @@ class CoreDio with DioMixin implements Dio {
     required BaseModel<T> parseModel,
     dynamic data,
     Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? headers,
     void Function(int, int)? onReceiveProgress,
   }) async {
     final response = await request<dynamic>(
-      path,
+      options.baseUrl + path,
       data: data,
+      queryParameters: queryParameters,
       options: Options(
         method: type.rawValue,
+        headers: headers,
       ),
     );
     switch (response.statusCode) {

@@ -14,9 +14,8 @@ class NetworkManager {
     coreDio = CoreDio(baseOptions);
   }
   static NetworkManager? _instance;
-  static NetworkManager? get instance {
-    _instance ??= NetworkManager._init();
-    return _instance;
+  static NetworkManager get instance {
+    return _instance ??= NetworkManager._init();
   }
 
   CoreDio? coreDio;

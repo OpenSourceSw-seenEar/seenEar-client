@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:get_it/get_it.dart';
+import 'package:seenear/core/base/model/base_view_model.dart';
 
-class BaseView<T extends ChangeNotifier> extends StatefulWidget {
+class BaseView<T extends BaseViewModel> extends StatefulWidget {
   final Widget Function(BuildContext context, T model, Widget? child) builder;
   final Function(T model)? onModelReady;
   final T viewModel;
@@ -17,16 +17,18 @@ class BaseView<T extends ChangeNotifier> extends StatefulWidget {
   BaseViewState<T> createState() => BaseViewState<T>();
 }
 
-class BaseViewState<T extends ChangeNotifier> extends State<BaseView<T>> {
+class BaseViewState<T extends BaseViewModel> extends State<BaseView<T>> {
   late T model;
 
   @override
   void initState() {
-    model = GetIt.I<T>();
+    model = widget.viewModel;
 
     if (widget.onModelReady != null) {
       widget.onModelReady!(model);
     }
+    model.init();
+
     super.initState();
   }
 

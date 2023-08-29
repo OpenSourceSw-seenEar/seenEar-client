@@ -4,7 +4,17 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To make json serialization work, run the following command:
+
+```bash
+dart run build_runner watch
+```
+
+To find dependency graph, run the following command:
+
+```bash
+$ dart pub global activate lakos
+```
 
 A few resources to get you started if this is your first Flutter project:
 

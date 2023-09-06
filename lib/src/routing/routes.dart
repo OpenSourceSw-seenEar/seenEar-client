@@ -11,15 +11,11 @@ import 'package:seenear/src/features/senior/intro/select_gender/select_gender_sc
 import 'package:seenear/src/features/senior/intro/select_types/select_types_screen.dart';
 import 'package:seenear/src/features/senior/listen_thank/check_thank_list/check_thank_list_screen.dart';
 import 'package:seenear/src/features/junior/auth/edit_nickname/view/edit_nickname_view.dart';
-import 'package:seenear/src/features/junior/auth/signin/view/signin_view.dart';
-import 'package:seenear/src/features/junior/cards/card/view/card_screen.dart';
 import 'package:seenear/src/features/junior/cards/detail_card/view/detail_card_view.dart';
 import 'package:seenear/src/features/junior/counsel/chat/chat_view.dart';
 import 'package:seenear/src/features/junior/counsel/select_gender/select_gender_view.dart';
 import 'package:seenear/src/features/junior/counsel/select_worry/select_worry_view.dart';
 import 'package:seenear/src/features/junior/cards/card_screen.dart';
-import 'package:seenear/src/features/junior/counsel/select_gender/view/select_gender_view.dart';
-import 'package:seenear/src/features/junior/counsel/select_worry/view/select_worry_view.dart';
 import 'package:seenear/src/features/junior/mypage/view/mypage_view.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();

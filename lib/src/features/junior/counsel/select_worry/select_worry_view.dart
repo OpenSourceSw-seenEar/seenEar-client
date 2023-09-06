@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:seenear/core/base/view/base_view.dart';
 import 'package:seenear/core/extension/context_extension.dart';
 import 'package:seenear/core/extension/string_extension.dart';
 import 'package:seenear/src/constants/colors.dart';
 import 'package:seenear/src/constants/fonts.dart';
-import 'package:seenear/src/features/junior/counsel/select_worry/view_model/select_worry_view_model.dart';
+import 'package:seenear/src/features/junior/counsel/select_worry/select_worry_view_model.dart';
 
 class SelectWorryView extends StatelessWidget {
   const SelectWorryView({super.key});
@@ -24,9 +23,9 @@ class SelectWorryView extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
                 child: Text(
-                  "Name님의\n고민은 무엇인가요?",
+                  "${model.nickname}님의\n고민은 무엇인가요?",
                   style: FontSystem.title.copyWith(
-                    color: ColorSystem.font.brown100,
+                    color: FontColor.brown100,
                   ),
                 ),
               ),
@@ -55,21 +54,21 @@ class SelectWorryView extends StatelessWidget {
 
   Widget _logo(BuildContext context) {
     return Container(
-        width: context.width,
-        padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top),
-        decoration: BoxDecoration(
-          color: ColorSystem.orange,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Column(
-          children: [
-            const Text(
-              "고민이 있을 땐,\nseenEAR 해요.",
-              style: SeniorFont.titleSubtitle,
-            ),
-            SvgPicture.asset('senior'.toSVG)
-          ],
-        ));
+      width: context.width,
+      padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top),
+      decoration: BoxDecoration(
+        color: ColorSystem.orange,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        children: [
+          Image.asset(
+            'select_worry'.toImage,
+            width: 250,
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _worryButton(Function() onTap, String text, String imagePath) {

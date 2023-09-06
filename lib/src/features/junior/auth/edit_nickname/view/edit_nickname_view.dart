@@ -14,7 +14,8 @@ class EditNicknameView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<EditNicknameViewModel>(
       viewModel: EditNicknameViewModel(),
-      onModelReady: (viewmodel) => {viewmodel.init()},
+      onModelReady: (viewmodel) =>
+          {viewmodel.init(), viewmodel.setContext(context)},
       builder: (context, model, child) => Scaffold(
         body: SafeArea(
             child: Center(
@@ -32,17 +33,17 @@ class EditNicknameView extends StatelessWidget {
                       style: FontSystem.button,
                       controller: model.textController,
                       textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                        hintText: "닉네임을 입력해주세요.",
+                      decoration: const InputDecoration(
+                        hintText: "사용할 닉네임을 입력해주세요.",
                         hintStyle: FontSystem.button,
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                            color: ColorSystem.font.brown60,
+                            color: FontColor.brown60,
                           ),
                         ),
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                            color: ColorSystem.font.brown60,
+                            color: FontColor.brown60,
                           ),
                         ),
                       ),
@@ -50,8 +51,8 @@ class EditNicknameView extends StatelessWidget {
                   ),
                   Text(
                     "최대 10자까지 가능해요.(특수문자 사용불가)",
-                    style: FontSystem.caption
-                        .copyWith(color: ColorSystem.font.brown40),
+                    style:
+                        FontSystem.caption.copyWith(color: FontColor.brown40),
                   ),
                 ],
               ),
@@ -61,14 +62,17 @@ class EditNicknameView extends StatelessWidget {
                   width: context.width * 0.9,
                   height: 56,
                   decoration: BoxDecoration(
-                    color: ColorSystem.point.yellow,
+                    color:
+                        model.isValid ? ColorSystem.orange : PointColor.yellow,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   alignment: Alignment.center,
                   child: Text(
                     "완료",
-                    style: FontSystem.button
-                        .copyWith(color: ColorSystem.font.brown60),
+                    style: FontSystem.button.copyWith(
+                        color: model.isValid
+                            ? FontColor.brown100
+                            : FontColor.brown60),
                   ),
                 ),
               ),

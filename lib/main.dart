@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:provider/provider.dart';
+import 'package:seenear/common/providers/global_provider.dart';
 import 'package:seenear/src/constants/colors.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:seenear/src/features/common/navigator/view_model/bottom_navigator_view_model.dart';
@@ -24,6 +26,9 @@ void main() async {
     providers: [
       ChangeNotifierProvider.value(
           value: BottomNavigatorController(configRouter)),
+      ChangeNotifierProvider.value(
+        value: GlobalProvider(),
+      ),
     ],
     child: const MyApp(),
   ));

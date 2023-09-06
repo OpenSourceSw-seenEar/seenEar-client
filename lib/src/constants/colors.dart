@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 class ColorSystem {
   const ColorSystem._();
 
-  static final FontColor font = FontColor._();
-  static final PointColor point = PointColor._();
-
   static const Color orange = Color(0xFFFFCE51);
   static const Color lightOrange = Color(0xFFFFFBF2);
+  static const Color lightYellow = Color(0xFFFFEEC1);
   static const Color white = Color(0xFFFFFFFF);
   static const Color darkOrange = Color(0xFFE4AA12);
   static const Color backgroundLightOrange = Color(0xFFFFFBF2);
@@ -15,16 +13,16 @@ class ColorSystem {
 }
 
 class FontColor {
-  FontColor._();
+  const FontColor._();
 
-  final Color brown100 = const Color(0xFF4D3E1A);
-  final Color brown60 = const Color(0xFFE4AA12);
-  final Color brown40 = const Color(0xFFB8B2A3);
+  static const Color brown100 = Color(0xFF4D3E1A);
+  static const Color brown60 = Color(0xFFE4AA12);
+  static const Color brown40 = Color(0xFFB8B2A3);
 }
 
 class PointColor {
-  PointColor._();
+  const PointColor._();
 
-  final Color yellow = const Color(0xFFFFE5A3);
-  final Color lightYellow = const Color(0xFFFFEEC1);
+  static const Color yellow = Color(0xFFFFE5A3);
+  static const Color lightYellow = Color(0xFFFFEEC1);
 }

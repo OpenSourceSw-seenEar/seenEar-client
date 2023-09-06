@@ -2,10 +2,11 @@ import "package:flutter/material.dart";
 import 'package:seenear/core/base/view/base_view.dart';
 import "package:seenear/core/extension/context_extension.dart";
 import "package:seenear/core/extension/string_extension.dart";
-import "package:seenear/src/common_widgets/custom_app_bar.dart";
+import 'package:seenear/src/common_widgets/appbar.dart';
 import "package:seenear/src/constants/colors.dart";
+import "package:seenear/src/constants/enums/gender_enum.dart";
 import "package:seenear/src/constants/fonts.dart";
-import "package:seenear/src/features/junior/counsel/select_gender/view_model/select_gender_view_model.dart";
+import 'package:seenear/src/features/junior/counsel/select_gender/select_gender_view_model.dart';
 
 class SelectGenderView extends StatelessWidget {
   final String worryCategory;
@@ -17,6 +18,7 @@ class SelectGenderView extends StatelessWidget {
       viewModel: SelectGenderViewModel(),
       onModelReady: (viewModel) {
         viewModel.setContext(context);
+        viewModel.init();
       },
       builder: (context, viewModel, child) {
         return Scaffold(
@@ -33,15 +35,17 @@ class SelectGenderView extends StatelessWidget {
                 Text(
                   "$worryCategory 고민에 대해\n누구와 이야기 해볼까요?",
                   style: FontSystem.title.copyWith(
-                    color: ColorSystem.font.brown100,
+                    color: FontColor.brown100,
                   ),
                 ),
                 const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _selectGenderButton("grandmother".toImage, () {}, context),
-                    _selectGenderButton("grandfather".toImage, () {}, context),
+                    _selectGenderButton("grandmother".toImage,
+                        () => viewModel.onTap(GenderType.grandMother), context),
+                    _selectGenderButton("grandfather".toImage,
+                        () => viewModel.onTap(GenderType.grandFather), context),
                   ],
                 )
               ],

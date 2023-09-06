@@ -28,6 +28,6 @@ class BottomNavigatorController extends ChangeNotifier {
   double navBarHeight(BuildContext context) {
     return (Platform.isAndroid || View.of(context).physicalSize.width <= 1080)
         ? 56
-        : 70;
+        : 60;
   }
 }

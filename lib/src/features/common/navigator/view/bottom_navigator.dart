@@ -25,33 +25,47 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
     return Consumer<BottomNavigatorController>(
       builder: (context, controller, child) => Scaffold(
         body: navigationShell,
-        bottomNavigationBar: NavigationBar(
-          selectedIndex: navigationShell.currentIndex,
-          backgroundColor: ColorSystem.white,
-          indicatorColor: ColorSystem.white,
-          labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-          elevation: 3,
-          destinations: [
-            NavigationDestination(
-              icon: navigationShell.currentIndex == 0
-                  ? SvgPicture.asset('home_selected'.toSVG)
-                  : SvgPicture.asset('home_unselected'.toSVG),
-              label: 'home',
-            ),
-            NavigationDestination(
-              icon: navigationShell.currentIndex == 1
-                  ? SvgPicture.asset('card_selected'.toSVG)
-                  : SvgPicture.asset('card_unselected'.toSVG),
-              label: 'card',
-            ),
-            NavigationDestination(
-              icon: navigationShell.currentIndex == 2
-                  ? SvgPicture.asset('profile_selected'.toSVG)
-                  : SvgPicture.asset('profile_unselected'.toSVG),
-              label: 'mypage',
-            ),
-          ],
-          onDestinationSelected: _goBranch,
+        bottomNavigationBar: Container(
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 2,
+                blurRadius: 4,
+                offset: const Offset(0, 3),
+              ),
+            ],
+          ),
+          child: NavigationBar(
+            selectedIndex: navigationShell.currentIndex,
+            backgroundColor: ColorSystem.white,
+            indicatorColor: ColorSystem.white,
+            labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+            elevation: 3,
+            shadowColor: Colors.black,
+            height: controller.navBarHeight(context),
+            destinations: [
+              NavigationDestination(
+                icon: navigationShell.currentIndex == 0
+                    ? SvgPicture.asset('home_selected'.toSVG)
+                    : SvgPicture.asset('home_unselected'.toSVG),
+                label: 'home',
+              ),
+              NavigationDestination(
+                icon: navigationShell.currentIndex == 1
+                    ? SvgPicture.asset('card_selected'.toSVG)
+                    : SvgPicture.asset('card_unselected'.toSVG),
+                label: 'card',
+              ),
+              NavigationDestination(
+                icon: navigationShell.currentIndex == 2
+                    ? SvgPicture.asset('profile_selected'.toSVG)
+                    : SvgPicture.asset('profile_unselected'.toSVG),
+                label: 'mypage',
+              ),
+            ],
+            onDestinationSelected: _goBranch,
+          ),
         ),
       ),
     );

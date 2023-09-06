@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:seenear/common/providers/global_provider.dart';
 import 'package:seenear/src/features/common/navigator/view/bottom_navigator.dart';
 import 'package:seenear/src/features/common/select_role/view/select_role_view.dart';
 import 'package:seenear/src/features/common/splash/view/splash_screen.dart';
+import 'package:seenear/src/features/senior/advice/select_advice_type/select_advice_type_screen.dart';
+import 'package:seenear/src/features/senior/intro/edit_nickname/edit_nickname_screen.dart';
+import 'package:seenear/src/features/senior/intro/select_gender/select_gender_screen.dart';
+import 'package:seenear/src/features/senior/intro/select_types/select_types_screen.dart';
+import 'package:seenear/src/features/senior/listen_thank/check_thank_list/check_thank_list_screen.dart';
 import 'package:seenear/src/features/junior/auth/edit_nickname/view/edit_nickname_view.dart';
 import 'package:seenear/src/features/junior/auth/signin/view/signin_view.dart';
+import 'package:seenear/src/features/junior/cards/card/view/card_screen.dart';
+import 'package:seenear/src/features/junior/cards/detail_card/view/detail_card_view.dart';
+import 'package:seenear/src/features/junior/counsel/chat/chat_view.dart';
+import 'package:seenear/src/features/junior/counsel/select_gender/select_gender_view.dart';
+import 'package:seenear/src/features/junior/counsel/select_worry/select_worry_view.dart';
 import 'package:seenear/src/features/junior/cards/card_screen.dart';
 import 'package:seenear/src/features/junior/counsel/select_gender/view/select_gender_view.dart';
 import 'package:seenear/src/features/junior/counsel/select_worry/view/select_worry_view.dart';
@@ -17,21 +29,46 @@ final configRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
   routes: [
     GoRoute(
-        path: "/splash",
-        name: "/splash",
-        pageBuilder: (context, state) =>
-            const MaterialPage(child: SplashScreen())),
-    GoRoute(
       path: '/selectRole',
       name: '/selectRole',
       pageBuilder: (context, state) =>
           const MaterialPage(child: SelectRoleView()),
     ),
     GoRoute(
-      path: "/signin",
-      name: "/signin",
-      pageBuilder: (context, state) => const MaterialPage(child: SigninView()),
+      path: "/thanklist",
+      name: "/thanklist",
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: CheckThankListScreen()),
     ),
+    GoRoute(
+      path: "/type",
+      name: "/type",
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: SelectTypesScreen()),
+    ),
+    GoRoute(
+      path: "/input",
+      name: "/input",
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: EditNicknameScreen()),
+    ),
+    GoRoute(
+      path: "/senior",
+      name: "/senior",
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: SelectGenderScreen()),
+    ),
+    GoRoute(
+      path: "/adviceType",
+      name: "/adviceType",
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: SelectAdviceTypeScreen()),
+    ),
+    GoRoute(
+        path: "/splash",
+        name: "/splash",
+        pageBuilder: (context, state) =>
+            const MaterialPage(child: SplashScreen())),
     GoRoute(
       path: '/editNickname',
       name: '/editNickname',
@@ -51,10 +88,12 @@ final configRouter = GoRouter(
                   const MaterialPage(child: SelectWorryView()),
               routes: [
                 GoRoute(
-                  path: 'selectGender/:worryCategory',
+                  path: 'worry',
                   pageBuilder: (context, state) {
                     final category =
-                        state.pathParameters['worryCategory'] ??= "";
+                        Provider.of<GlobalProvider>(context, listen: false)
+                            .worryCategory;
+
                     return MaterialPage(
                       child: SelectGenderView(worryCategory: category),
                     );
@@ -62,6 +101,11 @@ final configRouter = GoRouter(
                 ),
               ],
             ),
+            GoRoute(
+                path: '/chat',
+                pageBuilder: (context, state) {
+                  return const MaterialPage(child: ChatView());
+                }),
           ],
         ),
         StatefulShellBranch(routes: [
@@ -69,6 +113,13 @@ final configRouter = GoRouter(
             path: '/card',
             pageBuilder: (context, state) =>
                 const MaterialPage(child: CardScreen()),
+            routes: [
+              GoRoute(
+                  path: 'detailCard',
+                  pageBuilder: (context, state) {
+                    return const MaterialPage(child: DetailCardView());
+                  }),
+            ],
           ),
         ]),
         StatefulShellBranch(

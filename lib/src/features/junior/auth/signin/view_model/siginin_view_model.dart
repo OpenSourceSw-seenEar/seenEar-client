@@ -2,6 +2,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:provider/provider.dart';
+import 'package:seenear/common/providers/global_provider.dart';
 import 'package:seenear/core/base/model/base_view_model.dart';
 import 'package:seenear/core/init/db/local_manager.dart';
 import 'package:seenear/src/constants/enums/local_keys_enum.dart';
@@ -40,6 +42,8 @@ class SigninViewModel extends BaseViewModel {
         LocaleManager.instance
             .setStringValue(PreferencesKeys.token, value.accessToken);
         log(value.accessToken);
+        Provider.of<GlobalProvider>(viewModelContext, listen: false)
+            .setNickname("심상현");
 
         goNext(viewModelContext);
       });

@@ -1,0 +1,1 @@
+enum ChatPersonType { senior, junior }

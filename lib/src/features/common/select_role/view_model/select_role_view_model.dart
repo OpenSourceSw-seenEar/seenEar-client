@@ -14,6 +14,6 @@ class SelectRoleViewModel extends BaseViewModel {
   }
 
   void onTapSenior(BuildContext context) {
-    context.go('/splash');
+    context.go('/senior');
   }
 }

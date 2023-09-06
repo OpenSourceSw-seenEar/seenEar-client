@@ -39,9 +39,14 @@ dependencies:
   build_runner: ^2.4.6
   # database
   shared_preferences: ^2.2.0
+  # utils
+  screenshot: ^2.1.0
+  url_launcher: ^6.1.12
   lakos: ^2.0.3
 
   equatable: ^2.0.5
+  intl: ^0.18.1
+  collection: ^1.17.2
 
 dev_dependencies:
   flutter_test:

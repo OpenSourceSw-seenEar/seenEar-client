@@ -1,5 +1,3 @@
-# README.md
-
 # 2023 공개 SW 개발자대회 출품작 seenEAR
 
 ![image](https://github.com/OpenSourceSw-seenEar/seenEar-back/assets/85864699/a816a430-748b-4ccb-933d-1d6601fce4c9)
